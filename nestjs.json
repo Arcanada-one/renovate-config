@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "NestJS/backend-stack preset. Extends the shared default and adds groupings for the Arcanada backend stack (NestJS, Prisma, Zod, BullMQ, Fastify, pino) per documentation/architecture/backend-stack-standards.md.",
+  "extends": ["github>Arcanada-one/renovate-config"],
+  "packageRules": [
+    {
+      "description": "Keep the @nestjs/* family on one version bump — mixed core/common/platform versions break DI resolution.",
+      "matchPackageNames": ["@nestjs/**"],
+      "groupName": "nestjs monorepo packages"
+    },
+    {
+      "description": "Prisma client + CLI must stay pinned to the same version.",
+      "matchPackageNames": ["prisma", "@prisma/client"],
+      "groupName": "prisma"
+    },
+    {
+      "description": "BullMQ + its Redis client move together.",
+      "matchPackageNames": ["bullmq", "ioredis"],
+      "groupName": "bullmq stack"
+    },
+    {
+      "description": "Fastify core + official plugins.",
+      "matchPackageNames": ["fastify", "@fastify/**"],
+      "groupName": "fastify"
+    },
+    {
+      "description": "Validation/schema stack (Zod + nestjs-zod adapters).",
+      "matchPackageNames": ["zod", "nestjs-zod", "@anatine/zod-nestjs"],
+      "groupName": "zod validation"
+    },
+    {
+      "description": "Structured logging stack.",
+      "matchPackageNames": ["pino", "pino-pretty", "nestjs-pino"],
+      "groupName": "pino logging"
+    },
+    {
+      "description": "Test tooling stays on one bump to avoid API-mismatch breakage.",
+      "matchPackageNames": ["vitest", "@vitest/**"],
+      "groupName": "vitest"
+    }
+  ]
+}

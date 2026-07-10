@@ -1,0 +1,9 @@
+# Every preset file fans out to every consumer repo on the next Renovate run —
+# any change here requires owner review.
+/default.json                   @PavelValentov
+/nestjs.json                    @PavelValentov
+/react.json                     @PavelValentov
+/.github/workflows/             @PavelValentov
+
+# Whole repo default owner.
+*                                @PavelValentov

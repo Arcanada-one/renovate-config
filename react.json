@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "React/frontend-stack preset. Extends the shared default and adds groupings for the Arcanada frontend stack (React, Vite, ESLint, Tailwind).",
+  "extends": ["github>Arcanada-one/renovate-config"],
+  "packageRules": [
+    {
+      "description": "react + react-dom must move together (peer-dependency contract).",
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "groupName": "react core"
+    },
+    {
+      "description": "Vite core + official plugins.",
+      "matchPackageNames": ["vite", "@vitejs/**"],
+      "groupName": "vite"
+    },
+    {
+      "description": "ESLint + typescript-eslint move together to avoid rule-set incompatibility.",
+      "matchPackageNames": ["eslint", "@typescript-eslint/**", "eslint-plugin-react", "eslint-plugin-react-hooks"],
+      "groupName": "eslint stack"
+    },
+    {
+      "description": "Tailwind + first-party plugins.",
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/**", "autoprefixer", "postcss"],
+      "groupName": "tailwind"
+    },
+    {
+      "description": "React Query / data-fetching stack.",
+      "matchPackageNames": ["@tanstack/react-query", "@tanstack/react-query-devtools"],
+      "groupName": "react-query"
+    },
+    {
+      "description": "Test tooling (Vitest + Testing Library) stays on one bump.",
+      "matchPackageNames": ["vitest", "@vitest/**", "@testing-library/**"],
+      "groupName": "frontend test tooling"
+    }
+  ]
+}
